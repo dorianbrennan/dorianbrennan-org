@@ -409,7 +409,7 @@ a.link:hover {
 footer {
     text-align: center;
     padding: 40px 24px;
-    color: var(--text-secondary);
+    color: #1D9A6C;
     font-size: 13px;
     border-top: 1px solid var(--border);
 }
