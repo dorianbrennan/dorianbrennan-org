@@ -229,6 +229,9 @@ a.link:hover {
 }
 
 /* Blog */
+ {
+    padding: 100px 0;
+}
 .post-list {
     list-style: none;
 }
