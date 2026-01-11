@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #666666;
+            --accent: #2d7a5f;
+            --accent-hover: #3d9a7f;
+            --border: #e0e0e0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --accent: #4a9d7f;
+            --accent-hover: #5abf9f;
+            --border: #2a2a2a;
+            --nav-bg: rgba(10, 10, 10, 0.9);
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--bg);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #home {
+            font-family: 'Futura', 'Century Gothic', 'Avenir Next', 'Helvetica Neue', sans-serif;
+            font-weight: 200;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+        }
+
+        /* Main content */
+        main {
+            margin-top: 100px;
+            min-height: calc(100vh - 200px);
+        }
+
+        section {
+            display: none;
+            padding: 60px 0;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 16px;
+            margin-top: 48px;
+            letter-spacing: -0.3px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            margin-top: 32px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        a.link {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        a.link:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Landing page */
+        #home {
+            padding: 100px 0;
+        }
+
+        .home-header {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .home-text {
+        }
+
+        .home-photo {
+            width: 240px;
+            height: 240px;
+            background-color: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .home-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .home-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .home-column h2 {
+            margin-top: 0;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .home-post-item {
+            margin-bottom: 28px;
+        }
+
+        .home-post-title {
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 4px;
+        }
+
+        .home-post-title a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .home-post-title a:hover {
+            color: var(--accent);
+        }
+
+        .home-post-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .intro {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        #home h1 {
+            font-size: 48px;
+            font-weight: 200;
+            letter-spacing: 0.5px;
+        }
+
+        /* Blog */
+        .post-list {
+            list-style: none;
+        }
+
+        .post-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-title {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .post-title a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .post-title a:hover {
+            color: var(--accent);
+        }
+
+        .post-date {
+            font-size: 13px;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .post-excerpt {
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        /* Stories */
+        #stories .intro {
+            margin-bottom: 60px;
+        }
+
+        .story-item {
+            padding: 48px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .story-item:first-of-type {
+            padding-top: 0;
+        }
+
+        .story-item:last-child {
+            border-bottom: none;
+        }
+
+        .story-header {
+            margin-bottom: 32px;
+        }
+
+        .story-title {
+            font-size: 26px;
+            font-weight: 300;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .story-content {
+            font-size: 17px;
+            line-height: 1.9;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+
+        .story-content p {
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .story-content p:first-of-type {
+            font-size: 18px;
+        }
+
+        .read-more {
+            font-size: 14px;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        .read-more:hover {
+            color: var(--accent-hover);
+        }
+
+        /* About/CV */
+        .cv-section {
+            margin-top: 48px;
+        }
+
+        .cv-item {
+            margin-bottom: 32px;
+        }
+
+        .cv-title {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .cv-meta {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .socials {
+            display: flex;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .social-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            nav ul {
+                gap: 16px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .intro {
+                font-size: 16px;
+            }
+
+            .home-header {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .home-photo {
+                width: 180px;
+                height: 180px;
+            }
+
+            .home-columns {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home" data-section="home">Home</a></li>
+                <li><a href="#blog" data-section="blog">Blog</a></li>
+                <li><a href="#stories" data-section="stories">Stories</a></li>
+                <li><a href="#about" data-section="about">About</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">◐</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="home" class="active">
+            <div class="home-header">
+                <div class="home-text">
+                    <h1>Hello, I'm Your Name</h1>
+                    <div class="intro">
+                        <p>I'm a writer, thinker, and creator based in [Your Location]. I write about technology, culture, and the stories that shape our world.</p>
+                        <p>This is a space for my essays, short fiction, and occasional thoughts on whatever captures my attention.</p>
+                    </div>
+                </div>
+                <div class="home-photo">
+                    <!-- Replace with your photo -->
+                    <img src="https://via.placeholder.com/240x240/e0e0e0/666666?text=Your+Photo" alt="Your Name">
+                </div>
+            </div>
+
+            <div class="home-columns">
+                <div class="home-column">
+                    <h2>Recent Writing</h2>
+                    <div class="home-post-item">
+                        <div class="home-post-title"><a href="#blog" data-section="blog">The Art of Minimal Design</a></div>
+                        <div class="home-post-date">January 10, 2026</div>
+                    </div>
+                    <div class="home-post-item">
+                        <div class="home-post-title"><a href="#blog" data-section="blog">On Digital Attention</a></div>
+                        <div class="home-post-date">January 3, 2026</div>
+                    </div>
+                    <div class="home-post-item">
+                        <div class="home-post-title"><a href="#blog" data-section="blog">Notes on Writing Daily</a></div>
+                        <div class="home-post-date">December 28, 2025</div>
+                    </div>
+                </div>
+
+                <div class="home-column">
+                    <h2>Recent Stories</h2>
+                    <div class="home-post-item">
+                        <div class="home-post-title"><a href="#stories" data-section="stories">The Last Message</a></div>
+                        <div class="home-post-date">8 min read</div>
+                    </div>
+                    <div class="home-post-item">
+                        <div class="home-post-title"><a href="#stories" data-section="stories">Waiting Room B</a></div>
+                        <div class="home-post-date">12 min read</div>
+                    </div>
+                    <div class="home-post-item">
+                        <div class="home-post-title"><a href="#stories" data-section="stories">The Forgotten Algorithm</a></div>
+                        <div class="home-post-date">6 min read</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog">
+            <h1>Blog</h1>
+            <p>Essays and thoughts on technology, writing, and life.</p>
+            
+            <ul class="post-list">
+                <li class="post-item">
+                    <div class="post-title"><a href="#">The Art of Minimal Design</a></div>
+                    <div class="post-date">January 10, 2026</div>
+                    <p class="post-excerpt">In a world of visual noise, simplicity becomes a radical act. Here's what I've learned about stripping away the unnecessary...</p>
+                </li>
+                <li class="post-item">
+                    <div class="post-title"><a href="#">On Digital Attention</a></div>
+                    <div class="post-date">January 3, 2026</div>
+                    <p class="post-excerpt">Our attention has become the most valuable commodity of the 21st century. How do we reclaim it?</p>
+                </li>
+                <li class="post-item">
+                    <div class="post-title"><a href="#">Notes on Writing Daily</a></div>
+                    <div class="post-date">December 28, 2025</div>
+                    <p class="post-excerpt">What happens when you commit to writing something—anything—every single day for a year.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="stories">
+            <h1>Short Stories</h1>
+            <p class="intro">Fiction that explores the strange and the familiar.</p>
+            
+            <div class="story-item">
+                <div class="story-header">
+                    <h3 class="story-title">The Last Message</h3>
+                    <p class="post-date">8 min read</p>
+                </div>
+                <div class="story-content">
+                    <p>The phone had been ringing for three days straight. Not the new phone—the old one, the flip phone from 2009 that Sarah kept in a drawer with other relics: a Tamagotchi, some foreign coins, a letter from her grandmother written in careful cursive on paper so thin it was almost translucent.</p>
+                    <p>She'd stopped charging it years ago. The battery had long since died, its final breath exhaled sometime in 2014, maybe 2015. Yet there it was at 3 AM on a Tuesday, vibrating against the wooden drawer bottom with an insistence that suggested urgency, or perhaps desperation.</p>
+                    <p>Sarah stood in her kitchen, barefoot on cold tile, listening to the muffled buzz. The sound was wrong somehow. Too analog. Too real. She opened the drawer.</p>
+                </div>
+                <a href="#" class="read-more">Continue reading →</a>
+            </div>
+
+            <div class="story-item">
+                <div class="story-header">
+                    <h3 class="story-title">Waiting Room B</h3>
+                    <p class="post-date">12 min read</p>
+                </div>
+                <div class="story-content">
+                    <p>Nobody remembers entering Waiting Room B. You simply realize, at some point, that you're there. The fluorescent lights hum at a frequency just below hearing, more felt than heard, a presence in your chest cavity like a second heartbeat.</p>
+                    <p>The chairs are beige. Not cream, not tan, not ecru—beige in its purest, most platonic form. They're arranged in rows of seven, though the room seems to shift when you're not looking directly at it, and sometimes there are eight chairs, sometimes six.</p>
+                    <p>Marcus sits in the third row, fourth seat from the left, though he couldn't tell you why he chose this particular chair or how long he's been sitting in it. The magazines on the table are from the future—next month, next year, dates that haven't happened yet—but they contain only articles about the past.</p>
+                </div>
+                <a href="#" class="read-more">Continue reading →</a>
+            </div>
+
+            <div class="story-item">
+                <div class="story-header">
+                    <h3 class="story-title">The Forgotten Algorithm</h3>
+                    <p class="post-date">6 min read</p>
+                </div>
+                <div class="story-content">
+                    <p>They found it in the legacy code, buried seventeen layers deep in a subsystem that hadn't been touched since 2003. A function called simply <em>remember()</em>, with no documentation, no comments, just three hundred lines of elegant, inexplicable logic.</p>
+                    <p>Elena was the one who noticed it first. She was refactoring the authentication service when she saw the call to <em>remember()</em> nested inside what should have been a simple password validation. Curious, she traced it back through the codebase, following its tendrils through modules and microservices like following a thread through a labyrinth.</p>
+                </div>
+                <a href="#" class="read-more">Continue reading →</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <h1>About</h1>
+            <div class="intro">
+                <p>I'm a writer and [your profession] interested in the intersection of technology, narrative, and human experience.</p>
+                <p>My work has appeared in [publications], and I've spoken at [events]. I'm currently working on [current project].</p>
+            </div>
+
+            <h2>Experience</h2>
+            <div class="cv-section">
+                <div class="cv-item">
+                    <div class="cv-title">Senior Writer · Publication Name</div>
+                    <div class="cv-meta">2022 - Present</div>
+                    <p>Writing about technology, culture, and their intersections.</p>
+                </div>
+                <div class="cv-item">
+                    <div class="cv-title">Contributing Editor · Another Publication</div>
+                    <div class="cv-meta">2019 - 2022</div>
+                    <p>Essays and features on digital culture and storytelling.</p>
+                </div>
+            </div>
+
+            <h2>Education</h2>
+            <div class="cv-section">
+                <div class="cv-item">
+                    <div class="cv-title">MA in Creative Writing</div>
+                    <div class="cv-meta">University Name · 2018</div>
+                </div>
+            </div>
+
+            <h2>Connect</h2>
+            <div class="socials">
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">GitHub</a>
+                <a href="mailto:you@email.com" class="social-link">Email</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2026 Your Name. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        function getTheme() {
+            const stored = localStorage.getItem('theme');
+            if (stored) return stored;
+            return prefersDark.matches ? 'dark' : 'light';
+        }
+
+        setTheme(getTheme());
+
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // Navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a[data-section], a.link[data-section]');
+
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                showSection(sectionId);
+                window.location.hash = sectionId;
+            });
+        });
+
+        // Handle direct URL navigation
+        if (window.location.hash) {
+            const sectionId = window.location.hash.substring(1);
+            showSection(sectionId);
+        }
+    </script>
+</body>
+</html>
