@@ -1,1 +1,42 @@
+---
+layout: default
+title: About
+---
 
+<section id="about">
+    <h1>About</h1>
+    <div class="intro">
+        <p>I'm a writer and [your profession] interested in the intersection of technology, narrative, and human experience.</p>
+        <p>My work has appeared in [publications], and I've spoken at [events]. I'm currently working on [current project].</p>
+    </div>
+
+    <h2>Experience</h2>
+    <div class="cv-section">
+        <div class="cv-item">
+            <div class="cv-title">Senior Writer · Publication Name</div>
+            <div class="cv-meta">2022 - Present</div>
+            <p>Writing about technology, culture, and their intersections.</p>
+        </div>
+        <div class="cv-item">
+            <div class="cv-title">Contributing Editor · Another Publication</div>
+            <div class="cv-meta">2019 - 2022</div>
+            <p>Essays and features on digital culture and storytelling.</p>
+        </div>
+    </div>
+
+    <h2>Education</h2>
+    <div class="cv-section">
+        <div class="cv-item">
+            <div class="cv-title">MA in Creative Writing</div>
+            <div class="cv-meta">University Name · 2018</div>
+        </div>
+    </div>
+
+    <h2>Connect</h2>
+    <div class="socials">
+        {% if site.social.twitter %}<a href="https://twitter.com/{{ site.social.twitter }}" class="social-link">Twitter</a>{% endif %}
+        {% if site.social.linkedin %}<a href="https://linkedin.com/in/{{ site.social.linkedin }}" class="social-link">LinkedIn</a>{% endif %}
+        {% if site.social.github %}<a href="https://github.com/{{ site.social.github }}" class="social-link">GitHub</a>{% endif %}
+        <a href="mailto:{{ site.author.email }}" class="social-link">Email</a>
+    </div>
+</section>
