@@ -1,14 +1,14 @@
 # Site settings
-title: Your Name
+title: Dorian Brennan
 description: Architect, writer, thinker, and creator
 url: "https://yourusername.github.io"
 baseurl: ""
 
 # Author info
 author:
-  name: Your Name
+  name: Dorian Brennan
   email: you@email.com
-  location: Your Location
+  location: Sydney
   bio: I'm a architect, writer, thinker, and creator based in Sydney. I write about technology, culture, and the stories that shape our world.
 
 # Social links
