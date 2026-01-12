@@ -1,31 +1,31 @@
-// Theme toggle
+// Theme toggle - always follows system preference
 const themeToggle = document.getElementById('themeToggle');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    updateIcon(theme);
-}
-
 function updateIcon(theme) {
     if (theme === 'dark') {
-        themeToggle.textContent = '☀'; // Sun in dark mode (click to go light)
+        themeToggle.textContent = '☀'; // Sun in dark mode
     } else {
-        themeToggle.textContent = '☾'; // Moon in light mode (click to go dark)
+        themeToggle.textContent = '☾'; // Moon in light mode
     }
 }
 
-function getTheme() {
-    const stored = localStorage.getItem('theme');
-    if (stored) return stored;
-    return prefersDark.matches ? 'dark' : 'light';
+function applySystemTheme() {
+    const theme = prefersDark.matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    updateIcon(theme);
 }
 
-const initialTheme = getTheme();
-setTheme(initialTheme);
+// Apply system theme on load
+applySystemTheme();
 
+// Listen for system theme changes
+prefersDark.addEventListener('change', applySystemTheme);
+
+// Toggle button still works but doesn't save preference
 themeToggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
-    setTheme(current === 'dark' ? 'light' : 'dark');
+    const newTheme = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    updateIcon(newTheme);
 });
