@@ -5,6 +5,15 @@ const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+    updateIcon(theme);
+}
+
+function updateIcon(theme) {
+    if (theme === 'dark') {
+        themeToggle.textContent = '☀'; // Sun in dark mode (click to go light)
+    } else {
+        themeToggle.textContent = '☾'; // Moon in light mode (click to go dark)
+    }
 }
 
 function getTheme() {
@@ -13,7 +22,8 @@ function getTheme() {
     return prefersDark.matches ? 'dark' : 'light';
 }
 
-setTheme(getTheme());
+const initialTheme = getTheme();
+setTheme(initialTheme);
 
 themeToggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
