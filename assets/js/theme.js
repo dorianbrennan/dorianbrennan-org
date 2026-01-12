@@ -39,10 +39,16 @@
     }
 
     // Set up toggle button
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            setTheme(current === 'dark' ? 'light' : 'dark');
-        });
-    }
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+        
+        // Add pulse animation
+        themeToggle.classList.add('pulse');
+        setTimeout(() => {
+            themeToggle.classList.remove('pulse');
+        }, 600);
+    });
+}
 })();
