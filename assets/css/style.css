@@ -445,6 +445,7 @@ footer {
     .home-header {
         grid-template-columns: 1fr;
         gap: 32px;
+        text-align: center; 
     }
 
     .home-photo {
