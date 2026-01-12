@@ -1,5 +1,5 @@
 
-<img src="{{ '/assets/images/Books-2025.jpeg' | relative_url }}" alt="Books of 2025" style="display: block; margin: 20px auto; max-width: 100%; height: auto;">
+<img src="{{ '/assets/images/Books-2025.jpeg' | relative_url }}" alt="Books of 2025" style="display: block; margin: 20px auto; max-width: 50%; height: auto;">
 
 As always, reading is a big part of who I am, and 2025 was no different. Below is a list of some of the books I read throughout the year. I almost reached my goal of 25 books (finishing 24), so hopefully this year I can meet and even surpass that number.
 
