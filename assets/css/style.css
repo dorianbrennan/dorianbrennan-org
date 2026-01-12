@@ -229,15 +229,13 @@ a.link:hover {
 }
 
 /* Blog */
- {
-    padding: 100px 0;
-}
+
 .post-list {
     list-style: none;
 }
 
 .post-item {
-    padding: 16px 0;
+    padding: 8px 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -248,7 +246,7 @@ a.link:hover {
 .post-title {
     font-size: 20px;
     font-weight: 400;
-    margin-top: 40px;
+    margin-top: 0px;
     margin-bottom: 8px;
 }
 
