@@ -1,31 +1,48 @@
-// Theme toggle - always follows system preference
-const themeToggle = document.getElementById('themeToggle');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+// Theme toggle - site-wide persistence
+(function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-function updateIcon(theme) {
-    if (theme === 'dark') {
-        themeToggle.textContent = '☀'; // Sun in dark mode
-    } else {
-        themeToggle.textContent = '☾'; // Moon in light mode
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        updateIcon(theme);
     }
-}
 
-function applySystemTheme() {
-    const theme = prefersDark.matches ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-    updateIcon(theme);
-}
+    function updateIcon(theme) {
+        if (themeToggle) {
+            if (theme === 'dark') {
+                themeToggle.textContent = '☀';
+            } else {
+                themeToggle.textContent = '☾';
+            }
+        }
+    }
 
-// Apply system theme on load
-applySystemTheme();
+    function getTheme() {
+        const stored = localStorage.getItem('theme');
+        if (stored) return stored;
+        return prefersDark.matches ? 'dark' : 'light';
+    }
 
-// Listen for system theme changes
-prefersDark.addEventListener('change', applySystemTheme);
+    // Apply theme immediately on page load
+    const initialTheme = getTheme();
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    
+    // Update icon once DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            updateIcon(initialTheme);
+        });
+    } else {
+        updateIcon(initialTheme);
+    }
 
-// Toggle button still works but doesn't save preference
-themeToggle.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme');
-    const newTheme = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    updateIcon(newTheme);
-});
+    // Set up toggle button
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    }
+})();
