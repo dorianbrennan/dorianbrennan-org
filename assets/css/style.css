@@ -101,6 +101,29 @@ main {
     min-height: calc(100vh - 200px);
 }
 
+/* Blockquotes */
+blockquote {
+    margin: 32px 0;
+    padding: 20px 24px;
+    border-left: 4px solid var(--accent);
+    background-color: rgba(45, 122, 95, 0.05);
+    color: var(--text);
+    font-style: italic;
+}
+
+[data-theme="dark"] blockquote {
+    background-color: rgba(74, 157, 127, 0.1);
+}
+
+blockquote p {
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
 section {
     padding: 60px 0;
 }
