@@ -102,13 +102,28 @@ main {
 }
 
 /* Blockquotes */
+.post-content blockquote,
+.story-full-content blockquote,
 blockquote {
-    margin: 32px 0;
-    padding: 20px 24px;
-    border-left: 4px solid var(--accent);
-    background-color: rgba(45, 122, 95, 0.05);
-    color: var(--text);
-    font-style: italic;
+    margin: 32px 0 !important;
+    padding: 20px 24px !important;
+    border-left: 4px solid var(--accent) !important;
+    background-color: rgba(45, 122, 95, 0.05) !important;
+    color: var(--text) !important;
+    font-style: italic !important;
+}
+
+[data-theme="dark"] .post-content blockquote,
+[data-theme="dark"] .story-full-content blockquote,
+[data-theme="dark"] blockquote {
+    background-color: rgba(74, 157, 127, 0.1) !important;
+}
+
+.post-content blockquote p,
+.story-full-content blockquote p,
+blockquote p {
+    color: var(--text) !important;
+    margin-bottom: 12px !important;
 }
 
 [data-theme="dark"] blockquote {
