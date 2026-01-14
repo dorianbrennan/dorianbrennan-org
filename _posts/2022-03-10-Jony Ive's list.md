@@ -4,4 +4,4 @@ The Financial Times has just published a [Makers and Creators](https://www.ft.co
 Item number ten on the list, the Mitutoyo 6-inch universal bevel protractor, is fantastic and an incredibly useful tool for designers.
 
 In another [article](https://www.ft.com/content/fad9b72c-5386-4591-8667-1fb1596836dc), Ive speaks with renowned Australian designer Marc Newson. It is a great back and forth, and one line in particular really resonated with me:
->If you don’t know how to make something, and you go straight to defining form, it tends to be arbitrary.
+> If you don’t know how to make something, and you go straight to defining form, it tends to be arbitrary.
