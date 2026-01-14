@@ -1,41 +1,55 @@
 ---
 layout: default
 ---
-
 <section id="home">
     <div class="home-header">
         <div class="home-text">
             <h1>Hello, I'm {{ site.author.name }}</h1>
             <div class="intro">
                 <p>{{ site.author.bio }}</p>
-                <p></p>
             </div>
         </div>
         <div class="home-photo">
-    <img id="profilePhoto" src="{{ '/assets/images/photo-light.jpg' | relative_url }}" alt="{{ site.author.name }}">
-</div>
-    
+            <img id="profilePhoto" 
+                 src="{{ '/assets/images/photo-light.jpg' | relative_url }}" 
+                 alt="{{ site.author.name }}"
+                 loading="lazy">
+        </div>
     </div>
 
     <div class="home-columns">
         <div class="home-column">
             <h2>Recent Writing</h2>
-            {% for post in site.posts limit:3 %}
-            <div class="home-post-item">
-                <div class="home-post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
-                <div class="home-post-date">{{ post.date | date: "%B %d, %Y" }}</div>
-            </div>
-            {% endfor %}
+            {% if site.posts.size > 0 %}
+                {% for post in site.posts limit:3 %}
+                <div class="home-post-item">
+                    <div class="home-post-title">
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    </div>
+                    <div class="home-post-date">{{ post.date | date: "%B %d, %Y" }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-content">No posts yet. Check back soon!</p>
+            {% endif %}
         </div>
 
         <div class="home-column">
             <h2>Recent Stories</h2>
-            {% for story in site.stories limit:3 %}
-            <div class="home-post-item">
-                <div class="home-post-title"><a href="{{ story.url | relative_url }}">{{ story.title }}</a></div>
-                <div class="home-post-date">{{ story.reading_time }}</div>
-            </div>
-            {% endfor %}
+            {% if site.stories.size > 0 %}
+                {% for story in site.stories limit:3 %}
+                <div class="home-post-item">
+                    <div class="home-post-title">
+                        <a href="{{ story.url | relative_url }}">{{ story.title }}</a>
+                    </div>
+                    {% if story.reading_time %}
+                        <div class="home-post-date">{{ story.reading_time }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-content">No stories yet. Check back soon!</p>
+            {% endif %}
         </div>
     </div>
 </section>
