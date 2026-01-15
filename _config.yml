@@ -1,8 +1,8 @@
 # Site settings
 title: Dorian Brennan
 description: Architect, writer, thinker, and creator
-url: "https://dorianbrennan.github.io"
-baseurl: "/dorianbrennan"
+url: "https://dorianbrennan.com"
+baseurl: ""
 
 # Author info
 author:
