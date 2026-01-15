@@ -23,7 +23,7 @@
     function updatePhoto(theme) {
         const photo = document.getElementById('profilePhoto');
         if (photo) {
-            const basePath = '/dorianbrennan/assets/images/';
+            const basePath = '/assets/images/';
             const photoFile = theme === 'dark' ? 'photo-dark.jpg' : 'photo-light.jpg';
             photo.src = basePath + photoFile;
         }
